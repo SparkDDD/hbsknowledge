@@ -1,0 +1,33 @@
+name: Scrape HBS Knowledge
+
+on:
+  workflow_dispatch:     # Allow manual run
+
+jobs:
+  scrape-hbs:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📥 Checkout repository
+      uses: actions/checkout@v3
+
+    - name: 🐍 Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: 📦 Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install playwright pyairtable beautifulsoup4
+        playwright install --with-deps
+
+    - name: 🔐 Set environment variables
+      env:
+        AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}
+      run: echo "Environment variable set"
+
+    - name: 🚀 Run scraper
+      env:
+        AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}
+      run: python hbsknowledge.py
