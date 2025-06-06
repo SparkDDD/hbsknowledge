@@ -5,7 +5,7 @@ from pyairtable import Api
 from playwright.sync_api import sync_playwright
 
 # === Airtable config ===
-AIRTABLE_API_KEY = "your_airtable_api_key"  # Replace or use os.environ["AIRTABLE_API_KEY"]
+AIRTABLE_API_KEY = os.environ["AIRTABLE_API_KEY"]
 BASE_ID = "appoz4aD0Hjolycwd"
 TABLE_ID = "tblpMPs5RCoP0PmFt"
 
