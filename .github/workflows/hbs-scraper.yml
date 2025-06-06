@@ -1,6 +1,8 @@
 name: Scrape HBS Knowledge
 
 on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs every day at 00:00 UTC
   workflow_dispatch:     # Allow manual run
 
 jobs:
