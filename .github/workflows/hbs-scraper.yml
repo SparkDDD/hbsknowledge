@@ -31,3 +31,10 @@ jobs:
       env:
         AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}
       run: python hbsknowledge.py
+
+    - name: 📤 Upload log file
+      if: always()  # Ensure it uploads even if previous step fails
+      uses: actions/upload-artifact@v3
+      with:
+        name: hbs-scraper-log
+        path: hbs_scrape_log.txt
